@@ -1,0 +1,27 @@
+version: '3.6'
+
+volumes:
+  postgres_data:
+
+services:
+  postgres_development:
+    image: postgres:11.6-alpine
+    environment:
+      POSTGRES_DB: trello_development
+      POSTGRES_USER: trello_development
+      POSTGRES_PASSWORD: trello_development
+    # volumes:
+    #   - postgres_data:/var/lib/postgresql/data
+    ports:
+      - '5436:5432'
+
+  postgres_test:
+    image: postgres:11.6-alpine
+    environment:
+      POSTGRES_DB: trello_test
+      POSTGRES_USER: trello_test
+      POSTGRES_PASSWORD: trello_test
+    # volumes:
+    #   - postgres_data:/var/lib/postgresql/data
+    ports:
+      - '5437:5432'
