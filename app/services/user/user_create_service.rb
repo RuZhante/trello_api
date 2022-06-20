@@ -1,20 +1,22 @@
 # frozen_string_literal: true
 
-# class UserCreateService
-class UserCreateService < ApplicationService
-  def initialize(email:, password:)
-    @email = email
-    @password = password
-    super
-  end
+module User
+  # class UserCreateService
+  class UserCreateService < ApplicationService
+    def initialize(email:, password:)
+      @email = email
+      @password = password
+      super
+    end
 
-  def call
-    create_user
-  end
+    def call
+      create_user
+    end
 
-  def create_user
-    User.create(email: @email, password: @password)
-  end
+    private
 
-  private_class_method :create_user
+    def create_user
+      ::User.create(email: @email, password: @password)
+    end
+  end
 end
