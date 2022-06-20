@@ -4,6 +4,8 @@ module API
   module V1
     # class UserController
     class UsersController < ApplicationController
+      def new; end
+
       def create
         saved_user = User::UserCreateService.call(email: user_params[:email], password: user_params[:password])
         render json: {

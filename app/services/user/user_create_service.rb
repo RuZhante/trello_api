@@ -16,7 +16,7 @@ module User
     private
 
     def create_user
-      ::User.create(email: @email, password: @password)
+      ::User.create!(email: @email, password: @password)
     end
   end
 end
