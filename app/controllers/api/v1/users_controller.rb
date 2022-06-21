@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
-module API
+module Api
   module V1
     # class UserController
     class UsersController < ApplicationController
-      def new; end
-
       def create
-        saved_user = User::UserCreateService.call(email: user_params[:email], password: user_params[:password])
+        saved_user = Users::UserCreateService.call(email: user_params[:email], password: user_params[:password],
+                                                   password_digest: user_params[:password_digest])
         render json: {
           user: saved_user
         }, status: :created
@@ -16,7 +15,7 @@ module API
       private
 
       def user_params
-        params.permit(:email, :password)
+        params.permit(:email, :password, :password_digest)
       end
     end
   end

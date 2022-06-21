@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
-module User
+module Users
   # class UserCreateService
   class UserCreateService < ApplicationService
-    def initialize(email:, password:)
+    def initialize(email:, password:, password_digest:)
       @email = email
       @password = password
-      super
+      @password_digest = password_digest
+      super()
     end
 
     def call
@@ -16,7 +17,7 @@ module User
     private
 
     def create_user
-      ::User.create!(email: @email, password: @password)
+      User.create!(email: @email, password: @password, password_digest: @password_digest)
     end
   end
 end
