@@ -6,7 +6,7 @@ module Api
     class UsersController < ApplicationController
       def create
         saved_user = Users::UserCreateService.call(email: user_params[:email], password: user_params[:password],
-                                                   password_digest: user_params[:password_digest])
+                                                   password_confirmation: user_params[:password_confirmation])
         render json: {
           user: saved_user
         }, status: :created
@@ -15,7 +15,7 @@ module Api
       private
 
       def user_params
-        params.permit(:email, :password, :password_digest)
+        params.permit(:email, :password, :password_confirmation)
       end
     end
   end
