@@ -14,6 +14,8 @@ module Users
 
     def find_by_email
       User.find_by email: @email
+    rescue ActiveRecord::RecordNotFound
+      render json: { errors: 'User not found' }, status: :not_found
     end
   end
 end
