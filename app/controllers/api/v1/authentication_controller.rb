@@ -12,7 +12,7 @@ module Api
           token = JsonWebToken.encode(user_id: @user.id)
           time = Time.now + 24.hours.to_i
 
-          render json: { user: @user,
+          render json: { user: ActiveModelSerializers::SerializableResource.new(@user, serializer: UserSerializer),
                          token:, exp: time.strftime('%m-%d-%Y %H:%M') }, status: :ok
         else
           render json: { error: 'unauthorized' }, status: :unauthorized

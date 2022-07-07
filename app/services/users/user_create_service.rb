@@ -3,10 +3,9 @@
 module Users
   # class UserCreateService
   class UserCreateService < ApplicationService
-    def initialize(email:, password:, password_confirmation:)
+    def initialize(email:, password:)
       @email = email
       @password = password
-      @password_digest = password_confirmation
       super()
     end
 
@@ -17,7 +16,7 @@ module Users
     private
 
     def create_user
-      User.create!(email: @email, password: @password, password_confirmation: @password_confirmation)
+      User.create!(email: @email, password: @password)
     end
   end
 end
